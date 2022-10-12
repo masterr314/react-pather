@@ -1,10 +1,17 @@
 import React from 'react'
-
-import { ExampleComponent } from 'react-pather'
 import 'react-pather/dist/index.css'
+import Router from './Router';
+import { PatherProvider, Pather } from 'react-pather'
+import routes from './routes'
+
+const pather = new Pather(routes);
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return (
+    <PatherProvider value={pather}>
+      <Router />
+    </PatherProvider>
+  );
 }
 
 export default App
