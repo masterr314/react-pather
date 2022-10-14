@@ -6,6 +6,7 @@ const withPather = () => (Wrapped) => {
         return (
             <PatherConsumer>
                 {(pather) => {
+                    pather.fill();
                     return (
                         <Wrapped {...props} pather={pather} />
                     )

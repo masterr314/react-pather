@@ -53,6 +53,13 @@ class Pather {
     reverse(route, params){
         return reverse(route, params);
     }
+
+    fill(){
+        const location = window.location;
+        this.location = location;
+        this.current = location.pathname;
+        this.query = new URLSearchParams(location.search);
+    }
 }
  
 export default Pather;
