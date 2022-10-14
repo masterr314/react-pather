@@ -1,9 +1,13 @@
 import React from 'react'
 
+const PatherContext = React.createContext()
+
 const { 
     Provider: PatherProvider, 
     Consumer: PatherConsumer 
-} = React.createContext()
+} = PatherContext;
+
+export default PatherContext;
 
 export { 
     PatherProvider, 

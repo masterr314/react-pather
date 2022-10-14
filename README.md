@@ -14,6 +14,7 @@ npm install --save react-pather
 
 routes.js
 ```jsx
+// Route names must be unique and start with /
 const routes = {
     profile: {
         path: '/profile',
@@ -26,7 +27,8 @@ const routes = {
                 }
             }
         }
-    }   
+    },
+    login: '/login',   
 }
 
 export default routes;
@@ -52,6 +54,8 @@ const App = () => {
 export default App
 ```
 
+# Use via hoc
+
 Router.js
 ```jsx
 import React from 'react'
@@ -63,15 +67,54 @@ function Router({ pather }){
             <span>
                 Profile: {pather.profile}
                 <br/>
-                Test: {pather.test}
+                Test: {pather.login}
                 <br/>
                 With params: {pather.reverse(pather.v1, { id: '12345' })}
+                <br/>
+                Current path: {pather.current}
+                <br/>
+                Location info: {pather.location}
+                <br/>
+                Query: {pather.query.toString()}
             </span>
         </>
     );
 }
 
 export default withPather()(Router);
+```
+
+# Use via React hook
+
+Router.js
+```jsx
+import React from 'react'
+import { usePather } from 'react-pather'
+
+function Router(){
+
+    const pather = usePather();
+
+    return (
+        <>
+            <span>
+                Profile: {pather.profile}
+                <br/>
+                Test: {pather.login}
+                <br/>
+                With params: {pather.reverse(pather.v1, { id: '12345' })}
+                <br/>
+                Current path: {pather.current}
+                <br/>
+                Location info: {pather.location}
+                <br/>
+                Query: {pather.query.toString()}
+            </span>
+        </>
+    );
+}
+
+export default Router;
 ```
 
 ## License
