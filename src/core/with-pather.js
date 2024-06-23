@@ -1,16 +1,18 @@
 import React from 'react';
 import { PatherConsumer } from './pather-context';
 
-const withPather = () => (Wrapped) => {
-    return (props) => {
+const withPather = () => Wrapped => {
+    return props => {
         return (
             <PatherConsumer>
-                {(pather) => {
-                    pather.fill();
-                    return (
-                        <Wrapped {...props} pather={pather} />
-                    )
-                }}
+                {
+                    pather => {
+                        pather.fill();
+                        return (
+                            <Wrapped {...props} pather={pather} />
+                        )
+                    }
+                }
             </PatherConsumer>
         )
     }
