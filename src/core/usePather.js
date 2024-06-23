@@ -1,7 +1,5 @@
 import { useContext } from 'react';
-import withPather from './with-pather';
 import PatherContext from './pather-context';
-
 
 const usePather = () => {
 
