@@ -1,6 +1,4 @@
 import _ from 'lodash';
-import { reverse } from 'named-urls';
-
 
 class Pather {
 
@@ -107,7 +105,30 @@ class Pather {
      * @param {object} params - Route params.
      */
     reverse(route, params){
-        return reverse(route, params);
+        const exp = /:[a-zA-Z_]{1}\w*/g;
+
+        const interpolatedRoute = route.replace(exp, param => {
+            const srcParam = param.slice(1);
+            return params[srcParam] ? params[srcParam] : param;
+        });
+
+        return interpolatedRoute;
+    }
+
+    /**
+     * Check whether given string is a valid URL 
+     * @method
+     * @param {string} str - String for checking.
+     * @param {boolean} http - If `true` check whether string is a valid HTTP/HTTPS url.
+     */
+    isURLValid = (str, http = false) => {
+        try {
+            const newUrl = new URL(str);
+            if (http) return newUrl.protocol === 'http:' || newUrl.protocol === 'https:';
+            return true;
+        } catch (err) {
+            return false;
+        }
     }
 
     /**
@@ -121,5 +142,5 @@ class Pather {
         this.query = new URLSearchParams(location.search);
     }
 }
- 
+
 export default Pather;
