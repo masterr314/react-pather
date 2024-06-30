@@ -13,6 +13,8 @@ const TestComponent = ({ pather }) => {
             <br/>
             Product Deactivate: {pather.back.Product.deactivate}
             <br/>
+            Product Deactivate (reversed): {pather.reverse(pather.back.Product.deactivate, { code: 'dk2d5' })}
+            <br/>
             Product Add to Cart: {pather.back.Product.addToCart}
             <br/>
             Account: {pather.back.account}
